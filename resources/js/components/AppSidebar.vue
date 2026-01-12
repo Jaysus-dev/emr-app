@@ -2,16 +2,17 @@
 import type { SidebarProps } from "@/components/ui/sidebar";
 
 import {
+    LayoutDashboard,
+    SquareUserRound,
     BookOpen,
-    Bot,
     Command,
-    Frame,
-    LifeBuoy,
-    Map,
-    PieChart,
-    Send,
     Settings2,
-    SquareTerminal,
+    Move3D,
+    FileSliders,
+    CalendarCheck2,
+    PackageCheck,
+    Scroll,
+    BookAlert,
 } from "lucide-vue-next";
 
 import NavMain from "@/components/NavMain.vue";
@@ -42,121 +43,130 @@ const data = {
         {
             title: "Dashboard",
             url: "#",
-            icon: Bot,
+            icon: LayoutDashboard,
         },
         {
-            title: "Playground",
+            title: "Patients",
             url: "#",
-            icon: SquareTerminal,
+            icon: SquareUserRound,
             isActive: true,
             items: [
                 {
-                    title: "History",
+                    title: "Patient List",
                     url: "#",
                 },
                 {
-                    title: "Starred",
+                    title: "All Patients",
                     url: "#",
                 },
                 {
-                    title: "Settings",
+                    title: "Express PTs",
                     url: "#",
                 },
             ],
         },
         {
-            title: "Models",
+            title: "Transfers",
             url: "#",
-            icon: Bot,
+            icon: Move3D,
             items: [
                 {
-                    title: "Genesis",
+                    title: "For Trans-In",
                     url: "#",
                 },
                 {
-                    title: "Explorer",
-                    url: "#",
-                },
-                {
-                    title: "Quantum",
+                    title: "For Trans-Out",
                     url: "#",
                 },
             ],
         },
         {
-            title: "Documentation",
+            title: "Finalization",
+            url: "#",
+            icon: CalendarCheck2,
+            items: [
+                {
+                    title: "For Finalization",
+                    url: "#",
+                },
+                {
+                    title: "Finalized PTs",
+                    url: "#",
+                },
+            ],
+        },
+        {
+            title: "Referral List ",
+            url: "#",
+            icon: FileSliders,
+            items: [
+                {
+                    title: "Incoming",
+                    url: "#",
+                },
+                {
+                    title: "Outgoing",
+                    url: "#",
+                },
+            ],
+        },
+        {
+            title: "Clinical Overview ",
             url: "#",
             icon: BookOpen,
             items: [
                 {
-                    title: "Introduction",
+                    title: "Reassessment Calendar",
                     url: "#",
                 },
                 {
-                    title: "Get Started",
+                    title: "Diet Summary",
                     url: "#",
                 },
                 {
-                    title: "Tutorials",
-                    url: "#",
-                },
-                {
-                    title: "Changelog",
-                    url: "#",
-                },
-            ],
-        },
-        {
-            title: "Settings",
-            url: "#",
-            icon: Settings2,
-            items: [
-                {
-                    title: "General",
-                    url: "#",
-                },
-                {
-                    title: "Team",
-                    url: "#",
-                },
-                {
-                    title: "Billing",
-                    url: "#",
-                },
-                {
-                    title: "Limits",
+                    title: "Census",
                     url: "#",
                 },
             ],
         },
     ],
+    // projects: [
+    //    {
+    //      name: "Reassessment Calendar",
+    //     url: "#",
+    //     icon: Frame,
+    // },
+    //  {
+    //     name: "Sales & Marketing",
+    //      url: "#",
+    //     icon: PieChart,
+    //   },
+    //   {
+    //       name: "Travel",
+    //       url: "#",
+    //       icon: Map,
+    //   },
+    // ],
     navSecondary: [
         {
-            title: "Support",
+            title: "Ward Settings",
             url: "#",
-            icon: LifeBuoy,
+            icon: Settings2,
         },
         {
-            title: "Feedback",
+            title: "Data Quality Check",
             url: "#",
-            icon: Send,
-        },
-    ],
-    projects: [
-        {
-            name: "Design Engineering",
-            url: "#",
-            icon: Frame,
+            icon: PackageCheck,
         },
         {
-            name: "Sales & Marketing",
+            title: "Learning Center",
             url: "#",
-            icon: PieChart,
+            icon: BookAlert,
         },
         {
-            name: "Travel",
+            title: "Release Notes",
             url: "#",
-            icon: Map,
+            icon: Scroll,
         },
     ],
 };
@@ -172,15 +182,17 @@ const data = {
                             <div
                                 class="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground"
                             >
-                                <Command class="size-4" />
+                                <Command class="size-6" />
                             </div>
                             <div
                                 class="grid flex-1 text-left text-sm leading-tight"
                             >
-                                <span class="truncate font-medium"
-                                    >Acme Inc</span
+                                <span class="truncate font-bold uppercase"
+                                    >Jay-emr</span
                                 >
-                                <span class="truncate text-xs">Enterprise</span>
+                                <span class="truncate text-xs font-medium"
+                                    >Test-app</span
+                                >
                             </div>
                         </a>
                     </SidebarMenuButton>
@@ -189,7 +201,7 @@ const data = {
         </SidebarHeader>
         <SidebarContent>
             <NavMain :items="data.navMain" />
-            <NavProjects :projects="data.projects" />
+            <!--<NavProjects :projects="data.projects" />-->
             <NavSecondary :items="data.navSecondary" class="mt-auto" />
         </SidebarContent>
         <SidebarFooter>

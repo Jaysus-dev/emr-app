@@ -23,8 +23,8 @@ const { open, toggleSidebar } = useSidebar();
         :class="cn('h-7 w-7', props.class)"
         @click="toggleSidebar"
     >
-        <ChevronRight v-if="open" />
-        <ChevronLeft v-else />
+        <ChevronLeft v-if="open" />
+        <ChevronRight v-else />
         <span class="sr-only">Toggle Sidebar</span>
     </Button>
 </template>
