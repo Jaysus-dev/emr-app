@@ -19,6 +19,12 @@ const form = useForm({
 });
 </script>
 
+<script lang="ts">
+export default {
+    layout: null, // <- disables AppLayout
+};
+</script>
+
 <template>
     <div class="min-h-screen flex items-center justify-center bg-gray-100">
         <div
@@ -26,7 +32,6 @@ const form = useForm({
         >
             <!-- Left Column: Carousel / Images -->
             <div class="bg-gray-200 relative overflow-hidden">
-                <!-- Example: Carousel / images -->
                 <img
                     src="https://via.placeholder.com/800x600"
                     alt="News Image"
@@ -41,6 +46,7 @@ const form = useForm({
                     </p>
                 </div>
             </div>
+
             <!-- Right Column: Login Card -->
             <Card
                 class="w-full max-w-sm flex justify-center rounded-bl-none rounded-tl-none"

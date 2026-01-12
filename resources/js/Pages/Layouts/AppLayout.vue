@@ -1,8 +1,10 @@
+<script setup lang="ts">
+import Sidebar from "@/components/index.vue";
+</script>
+
 <template>
-    <div class="flex">
-        <Sidebar />
-        <main class="p-6 w-full">
-            <slot />
-        </main>
-    </div>
+    <Sidebar>
+        <!-- The slot will render page-specific content -->
+        <slot />
+    </Sidebar>
 </template>

@@ -3,12 +3,16 @@ import { createApp, h, DefineComponent } from "vue";
 import { createInertiaApp } from "@inertiajs/vue3";
 import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
 import { ZiggyVue } from "ziggy-js";
+// Import your global AppLayout
+import AppLayout from "@/Pages/Layouts/AppLayout.vue";
 
 /**
  * Type for a Vue page component
  */
 type PageComponent = DefineComponent<Record<string, any>, any, any>;
 
+// Pages that should NOT use the global layout
+const noLayoutPages = ["Auth/Login"];
 /**
  * Create the Inertia app
  */
@@ -23,12 +27,14 @@ createInertiaApp({
             import.meta.glob("./Pages/**/*.vue")
         );
 
-        // Unwrap the default export if it exists (common with Vue + Vite)
-        if ((page as any).default) {
-            return (page as any).default as PageComponent;
+        // Unwrap the default export if it exists
+        const component = "default" in page ? (page as any).default : page;
+
+        if (!noLayoutPages.includes(name)) {
+            (component as any).layout = AppLayout;
         }
 
-        return page as PageComponent;
+        return component as PageComponent;
     },
 
     // -----------------------
