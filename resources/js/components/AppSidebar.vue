@@ -28,8 +28,10 @@ import {
     SidebarMenuItem,
 } from "@/components/ui/sidebar";
 
-const props = withDefaults(defineProps<SidebarProps>(), { variant: "inset" });
-
+const props = withDefaults(defineProps<SidebarProps>(), {
+    collapsible: "icon",
+    variant: "inset",
+});
 const data = {
     user: {
         name: "shadcn",

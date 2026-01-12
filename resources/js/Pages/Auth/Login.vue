@@ -46,7 +46,6 @@ export default {
                     </p>
                 </div>
             </div>
-
             <!-- Right Column: Login Card -->
             <Card
                 class="w-full max-w-sm flex justify-center rounded-bl-none rounded-tl-none"
