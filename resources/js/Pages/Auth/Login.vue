@@ -63,12 +63,12 @@ export default {
                     >
                         <div class="grid w-full items-center gap-2">
                             <div class="flex flex-col space-y-1.5">
-                                <Label for="email">Email</Label>
+                                <Label for="email">Username</Label>
                                 <Input
                                     id="email"
                                     type="email"
                                     v-model="form.email"
-                                    placeholder="m@example.com"
+                                    placeholder="Input Username"
                                 />
                             </div>
                             <div class="flex flex-col space-y-1.5">
@@ -79,12 +79,24 @@ export default {
                                     id="password"
                                     type="password"
                                     v-model="form.password"
+                                    placeholder="Input Password"
+                                />
+                            </div>
+                            <div class="flex flex-col space-y-1.5">
+                                <div class="flex items-center">
+                                    <Label for="password">Pavilion</Label>
+                                </div>
+                                <Input
+                                    id=""
+                                    type=""
+                                    v-model="form.password"
+                                    placeholder="Choose Pavilion"
                                 />
                             </div>
                         </div>
                         <Button
                             type="submit"
-                            class="w-full"
+                            class="w-full cursor-pointer"
                             :disabled="form.processing"
                         >
                             Login
@@ -93,9 +105,9 @@ export default {
                 </CardContent>
 
                 <CardFooter class="flex flex-col gap-2">
-                    <Button variant="outline" class="w-full cursor-pointer">
+                    <!--<Button variant="outline" class="w-full cursor-pointer">
                         Login with Google
-                    </Button>
+                    </Button>-->
                     <CardAction
                         class="flex justify-between w-full items-center"
                     >

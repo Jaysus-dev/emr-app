@@ -35,7 +35,7 @@ import {
                     <Breadcrumb>
                         <BreadcrumbList>
                             <BreadcrumbItem class="hidden md:block">
-                                <BreadcrumbLink href="#">
+                                <BreadcrumbLink href="">
                                     Building Your Application
                                 </BreadcrumbLink>
                             </BreadcrumbItem>

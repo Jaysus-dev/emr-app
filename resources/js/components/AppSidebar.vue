@@ -13,6 +13,7 @@ import {
     PackageCheck,
     Scroll,
     BookAlert,
+    LayoutDashboardIcon,
 } from "lucide-vue-next";
 
 import NavMain from "@/components/NavMain.vue";
@@ -40,11 +41,11 @@ const data = {
         avatar: "/avatars/shadcn.jpg",
     },
     navMain: [
-        {
-            title: "Dashboard",
-            url: "#",
-            icon: LayoutDashboard,
-        },
+        // {
+        //     title: "Dashboard",
+        //    url: "#",
+        //     icon: LayoutDashboard,
+        //  },
         {
             title: "Patients",
             url: "#",
@@ -182,7 +183,7 @@ const data = {
                             <div
                                 class="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground"
                             >
-                                <Command class="size-6" />
+                                <LayoutDashboard class="size-6" />
                             </div>
                             <div
                                 class="grid flex-1 text-left text-sm leading-tight"
@@ -190,9 +191,7 @@ const data = {
                                 <span class="truncate font-bold uppercase"
                                     >Jay-emr</span
                                 >
-                                <span class="truncate text-xs font-medium"
-                                    >Test-app</span
-                                >
+                                <span class="truncate text-xs">Dashboard</span>
                             </div>
                         </a>
                     </SidebarMenuButton>
