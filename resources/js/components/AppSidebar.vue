@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { SidebarProps } from "@/components/ui/sidebar";
+import { router } from "@inertiajs/vue3";
 
 import {
     LayoutDashboard,
@@ -34,6 +35,11 @@ const props = withDefaults(defineProps<SidebarProps>(), {
     collapsible: "icon",
     variant: "inset",
 });
+
+function goToDashboard() {
+    router.visit("/dashboard");
+}
+
 const data = {
     navMain: [
         // {
@@ -173,7 +179,12 @@ const data = {
         <SidebarHeader>
             <SidebarMenu>
                 <SidebarMenuItem>
-                    <SidebarMenuButton size="lg" as-child>
+                    <SidebarMenuButton
+                        size="lg"
+                        as-child
+                        @click="goToDashboard"
+                        class="cursor-pointer"
+                    >
                         <a href="#">
                             <div
                                 class="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground"

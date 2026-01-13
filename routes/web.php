@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 // Redirect root URL to /login (optional)
@@ -17,3 +18,11 @@ Route::post('/login', function () {
 
 // Dashboard page
 Route::get('/dashboard', fn () => Inertia::render('Dashboard'))->name('dashboard');
+// Settings page
+Route::get('/settings', fn () => Inertia::render('Settings'))->name('settings');
+
+// Logout 
+Route::post('/logout', function () {
+    Auth::logout(); // logs out the user
+    return redirect()->route('login'); // redirect to login page
+})->name('logout');

@@ -1,13 +1,5 @@
 <script setup lang="ts">
-import {
-    BadgeCheck,
-    Bell,
-    ChevronDown,
-    ChevronsUpDown,
-    CreditCard,
-    LogOut,
-    Sparkles,
-} from "lucide-vue-next";
+import { Bell, ChevronDown, LogOut, Settings } from "lucide-vue-next";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
@@ -25,6 +17,7 @@ import {
     SidebarMenuItem,
     useSidebar,
 } from "@/components/ui/sidebar";
+import { useForm, router, Link } from "@inertiajs/vue3";
 
 const props = defineProps<{
     user: {
@@ -35,6 +28,16 @@ const props = defineProps<{
 }>();
 
 const { isMobile } = useSidebar();
+
+const form = useForm({});
+
+function handleLogout() {
+    form.post("/logout");
+}
+
+function goToSettings() {
+    router.visit("/settings");
+}
 </script>
 
 <template>
@@ -101,27 +104,23 @@ const { isMobile } = useSidebar();
                     <DropdownMenuSeparator />
                     <DropdownMenuGroup>
                         <DropdownMenuItem>
-                            <Sparkles />
-                            Upgrade to Pro
-                        </DropdownMenuItem>
-                    </DropdownMenuGroup>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuGroup>
-                        <DropdownMenuItem>
-                            <BadgeCheck />
-                            Account
-                        </DropdownMenuItem>
-                        <DropdownMenuItem>
-                            <CreditCard />
-                            Billing
-                        </DropdownMenuItem>
-                        <DropdownMenuItem>
                             <Bell />
                             Notifications
                         </DropdownMenuItem>
+                        <!--to refactor routes list for cleaner and scalabality code-->
+                        <DropdownMenuItem
+                            @click="goToSettings"
+                            class="cursor-pointer"
+                        >
+                            <Settings />
+                            Settings
+                        </DropdownMenuItem>
                     </DropdownMenuGroup>
                     <DropdownMenuSeparator />
-                    <DropdownMenuItem>
+                    <DropdownMenuItem
+                        @click="handleLogout"
+                        class="cursor-pointer"
+                    >
                         <LogOut />
                         Log out
                     </DropdownMenuItem>
