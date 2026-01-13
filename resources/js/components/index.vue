@@ -28,8 +28,8 @@ type User = {
 };
 
 const user: User = {
-    name: "shadcn",
-    email: "m@example.com",
+    name: "Dr. Jay Estoquia ",
+    email: "Pavilion 2",
     avatar: "/avatars/shadcn.jpg",
 };
 </script>

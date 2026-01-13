@@ -49,7 +49,7 @@ const { isMobile } = useSidebar();
                         <Avatar class="h-8 w-8 rounded-2xl">
                             <AvatarImage :src="user.avatar" :alt="user.name" />
                             <AvatarFallback class="rounded-lg">
-                                CN
+                                DR
                             </AvatarFallback>
                         </Avatar>
                         <div
@@ -58,10 +58,12 @@ const { isMobile } = useSidebar();
                             <span class="truncate font-medium">{{
                                 user.name
                             }}</span>
-                            <span class="truncate text-xs">{{
-                                user.email
-                            }}</span>
+                            <span
+                                class="truncate text-xs tracking-widest uppercase"
+                                >{{ user.email }}</span
+                            >
                         </div>
+
                         <ChevronDown class="ml-auto size-4" />
                     </SidebarMenuButton>
                 </DropdownMenuTrigger>
@@ -81,7 +83,7 @@ const { isMobile } = useSidebar();
                                     :alt="user.name"
                                 />
                                 <AvatarFallback class="rounded-lg">
-                                    CN
+                                    DR
                                 </AvatarFallback>
                             </Avatar>
                             <div
