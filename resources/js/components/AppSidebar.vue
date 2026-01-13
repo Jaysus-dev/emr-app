@@ -35,11 +35,6 @@ const props = withDefaults(defineProps<SidebarProps>(), {
     variant: "inset",
 });
 const data = {
-    user: {
-        name: "shadcn",
-        email: "m@example.com",
-        avatar: "/avatars/shadcn.jpg",
-    },
     navMain: [
         // {
         //     title: "Dashboard",
@@ -203,8 +198,8 @@ const data = {
             <!--<NavProjects :projects="data.projects" />-->
             <NavSecondary :items="data.navSecondary" class="mt-auto" />
         </SidebarContent>
-        <SidebarFooter>
+        <!--<SidebarFooter>
             <NavUser :user="data.user" />
-        </SidebarFooter>
+        </SidebarFooter>-->
     </Sidebar>
 </template>

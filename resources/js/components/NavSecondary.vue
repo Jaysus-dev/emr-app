@@ -21,7 +21,7 @@ const props = defineProps<{
 
 <template>
     <SidebarGroup>
-        <SidebarGroupLabel>System & Support</SidebarGroupLabel>
+        <SidebarGroupLabel>System </SidebarGroupLabel>
         <SidebarGroupContent>
             <SidebarMenu>
                 <SidebarMenuItem v-for="item in items" :key="item.title">
