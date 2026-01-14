@@ -8,7 +8,7 @@ use Inertia\Inertia;
 Route::get('/', fn () => redirect('/login'));
 
 // Login page URL
-Route::get('/login', fn () => Inertia::render('Auth/Login'))->name('login');
+Route::get('/login', fn () => Inertia::render('auth/Login'))->name('login');
 
 // FAKE login submit (no auth yet)
 Route::post('/login', function () {
@@ -19,7 +19,17 @@ Route::post('/login', function () {
 // Dashboard page
 Route::get('/dashboard', fn () => Inertia::render('Dashboard'))->name('dashboard');
 // Settings page
-Route::get('/settings', fn () => Inertia::render('Settings'))->name('settings');
+
+Route::get('/settings', function () {
+    return redirect()->route('settings.profile');
+});
+//Route::get('/settings', fn () => Inertia::render('layouts/SettingsLayout'))->name('settings');
+//Settings content
+Route::prefix('settings')->name('settings.')->group(function() {
+    Route::get('profile',fn () => Inertia::render('settings/Profile'))->name('profile');
+    Route::get('appeareance',fn () => Inertia::render('settings/Appearance'))->name('appearance');
+    Route::get('newsupload',fn () => Inertia::render('settings/NewsUpload'))->name('newsupload');
+});
 
 // Logout 
 Route::post('/logout', function () {

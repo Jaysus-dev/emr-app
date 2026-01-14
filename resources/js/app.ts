@@ -4,7 +4,9 @@ import { createInertiaApp } from "@inertiajs/vue3";
 import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
 import { ZiggyVue } from "ziggy-js";
 // Import your global AppLayout
-import AppLayout from "@/Pages/Layouts/AppLayout.vue";
+import AppLayout from "@/pages/layouts/AppLayout.vue";
+import { router, usePage } from "@inertiajs/vue3";
+import { route } from "ziggy-js";
 
 /**
  * Type for a Vue page component
@@ -12,7 +14,7 @@ import AppLayout from "@/Pages/Layouts/AppLayout.vue";
 type PageComponent = DefineComponent<Record<string, any>, any, any>;
 
 // Pages that should NOT use the global layout
-const noLayoutPages = ["Auth/Login"];
+const noLayoutPages = ["auth/Login"];
 /**
  * Create the Inertia app
  */
@@ -23,8 +25,8 @@ createInertiaApp({
     resolve: async (name: string): Promise<PageComponent> => {
         // Resolve the page component from Pages folder
         const page = await resolvePageComponent(
-            `./Pages/${name}.vue`,
-            import.meta.glob("./Pages/**/*.vue")
+            `./pages/${name}.vue`,
+            import.meta.glob("./pages/**/*.vue")
         );
 
         // Unwrap the default export if it exists

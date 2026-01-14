@@ -1,7 +1,3 @@
-<script setup lang="ts">
-import AppLayout from "./Layouts/AppLayout.vue";
-</script>
-
 <template>
     <div class="flex flex-1 flex-col gap-4 p-4 pt-0">
         <div
