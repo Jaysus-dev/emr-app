@@ -1,21 +1,59 @@
 <script setup lang="ts">
 import SettingsLayout from "../layouts/SettingsLayout.vue";
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select";
+import {
+    Field,
+    FieldDescription,
+    FieldGroup,
+    FieldLabel,
+    FieldLegend,
+    FieldSeparator,
+    FieldSet,
+} from "@/components/ui/field";
 </script>
 
 <template>
     <SettingsLayout>
-        <div class="flex flex-1 flex-col gap-4 h-full">
-            <div
-                class="min-h-screen flex-1 md:min-h-min flex items-center justify-center h-full bg-muted rounded-lg"
-            >
-                <h1 class="text-xl p-6 font-bold">Appearance</h1>
-            </div>
-
-            <div class="grid auto-rows-min gap-4 md:grid-cols-3">
-                <div class="bg-muted aspect-video rounded-lg" />
-                <div class="bg-muted aspect-video rounded-lg" />
-                <div class="bg-muted aspect-video rounded-lg" />
-            </div>
+        <div class="w-full max-w-md">
+            <FieldGroup>
+                <Field>
+                    <FieldLabel for="checkout-exp-month-ts6">
+                        Appearance
+                    </FieldLabel>
+                    <FieldDescription>
+                        Choose how the app looks: Dark mode, Light mode, or
+                        match your system settings.
+                    </FieldDescription>
+                    <Select default-value="">
+                        <SelectTrigger
+                            id="checkout-exp-month-ts6 "
+                            class="cursor-pointer"
+                        >
+                            <SelectValue placeholder="Choose Appearance" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            <SelectItem class="cursor-pointer" value="01">
+                                Light Mode
+                            </SelectItem>
+                            <SelectItem class="cursor-pointer" value="02">
+                                Dark Mode
+                            </SelectItem>
+                            <SelectItem class="cursor-pointer" value="03">
+                                System
+                            </SelectItem>
+                            <SelectItem class="cursor-pointer" value="04">
+                                Custom
+                            </SelectItem>
+                        </SelectContent>
+                    </Select>
+                </Field>
+            </FieldGroup>
         </div>
     </SettingsLayout>
 </template>
