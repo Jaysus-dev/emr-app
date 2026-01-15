@@ -22,37 +22,37 @@ import {
     <SettingsLayout>
         <div class="w-full max-w-md">
             <FieldGroup>
-                <Field>
-                    <FieldLabel for="checkout-exp-month-ts6">
-                        Appearance
-                    </FieldLabel>
+                <FieldSet>
+                    <FieldLegend>Appearance</FieldLegend>
                     <FieldDescription>
                         Choose how the app looks: Dark mode, Light mode, or
                         match your system settings.
                     </FieldDescription>
-                    <Select default-value="">
-                        <SelectTrigger
-                            id="checkout-exp-month-ts6 "
-                            class="cursor-pointer"
-                        >
-                            <SelectValue placeholder="Choose Appearance" />
-                        </SelectTrigger>
-                        <SelectContent>
-                            <SelectItem class="cursor-pointer" value="01">
-                                Light Mode
-                            </SelectItem>
-                            <SelectItem class="cursor-pointer" value="02">
-                                Dark Mode
-                            </SelectItem>
-                            <SelectItem class="cursor-pointer" value="03">
-                                System
-                            </SelectItem>
-                            <SelectItem class="cursor-pointer" value="04">
-                                Custom
-                            </SelectItem>
-                        </SelectContent>
-                    </Select>
-                </Field>
+                    <Field>
+                        <Select default-value="">
+                            <SelectTrigger
+                                id="checkout-exp-month-ts6 "
+                                class="cursor-pointer"
+                            >
+                                <SelectValue placeholder="Choose Appearance" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem class="cursor-pointer" value="01">
+                                    Light Mode
+                                </SelectItem>
+                                <SelectItem class="cursor-pointer" value="02">
+                                    Dark Mode
+                                </SelectItem>
+                                <SelectItem class="cursor-pointer" value="03">
+                                    System
+                                </SelectItem>
+                                <SelectItem class="cursor-pointer" value="04">
+                                    Custom
+                                </SelectItem>
+                            </SelectContent>
+                        </Select>
+                    </Field>
+                </FieldSet>
             </FieldGroup>
         </div>
     </SettingsLayout>
