@@ -30,6 +30,7 @@ Route::prefix('settings')->name('settings.')->group(function() {
     Route::get('appeareance',fn () => Inertia::render('settings/Appearance'))->name('appearance');
     Route::get('newsupload',fn () => Inertia::render('settings/NewsUpload'))->name('newsupload');
 });
+    Route::get('/patient', fn () => Inertia::render('Patient'))->name('patient');
 
 // Logout 
 Route::post('/logout', function () {
