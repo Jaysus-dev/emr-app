@@ -1,99 +1,54 @@
-<script setup>
-import { ref, watch } from "vue";
-
-// Import icons from lucide-vue-next
+<script setup lang="ts">
+import { Button } from "@/components/ui/button";
 import {
-    FileText,
-    Clipboard,
-    Package,
-    Heart,
-    Beaker,
-    Image,
-    Activity,
-    BookOpen,
-    File,
-} from "lucide-vue-next";
-
-const props = defineProps({
-    modelValue: { type: String, default: "overview" },
-});
-
-const emit = defineEmits(["update:modelValue"]);
-
-const internalActiveTab = ref(props.modelValue);
-
-watch(internalActiveTab, (val) => emit("update:modelValue", val));
-watch(
-    () => props.modelValue,
-    (val) => {
-        if (val !== internalActiveTab.value) internalActiveTab.value = val;
-    },
-);
-
-const tabs = [
-    { key: "overview", label: "Overview", icon: FileText },
-    { key: "notes", label: "Notes", icon: Clipboard },
-    { key: "orders", label: "Orders", icon: Package },
-    { key: "medications", label: "Medications", icon: Heart },
-    { key: "labs", label: "Laboratory", icon: Beaker },
-    { key: "imaging", label: "Imaging", icon: Image },
-    { key: "vitals", label: "Vitals", icon: Activity },
-    { key: "history", label: "History", icon: BookOpen },
-    { key: "documents", label: "Documents", icon: File },
-];
+    Card,
+    CardContent,
+    CardDescription,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 </script>
+
 <template>
-    <div>
-        <!-- Tabs -->
-        <nav class="my-4 border-b">
-            <Separator />
-            <ul class="flex gap-5 text-sm font-medium">
-                <li v-for="tab in tabs" :key="tab.key">
-                    <button
-                        @click="$emit('update:modelValue', tab.key)"
-                        class="relative flex items-center gap-1 py-2 transition-colors"
-                        :class="
-                            modelValue === tab.key
-                                ? 'text-primary'
-                                : 'text-muted-foreground hover:text-foreground'
-                        "
-                    >
-                        <!-- Icon -->
-                        <component
-                            v-if="tab.icon"
-                            :is="tab.icon"
-                            class="w-4 h-4"
-                        />
-                        {{ tab.label }}
-
-                        <!-- Underline for active -->
-                        <span
-                            v-if="modelValue === tab.key"
-                            class="absolute left-0 -bottom-px h-0.5 w-full bg-primary"
-                        />
-                    </button>
-                </li>
-            </ul>
-        </nav>
-
-        <!-- Tab Content -->
-        <div class="mt-4">
-            <slot :name="modelValue" />
-            <div v-if="!$slots[modelValue]" class="text-muted-foreground">
-                Content for "{{ modelValue }}" not provided.
-            </div>
-        </div>
+    <div class="flex w-full flex-col gap-6">
+        <Tabs default-value="account" class="w-full border-b">
+            <TabsList
+                class="flex p-0 px-4 rounded-none text-m **:data-[state=active]:shadow-none **:data-[state=active]:bg-primary-foreground **:data-[state=active]:relative **:data-[state=active]:text-foreground **:data-[state=active]:after:absolute **:data-[state=active]:after:left-0 **:data-[state=active]:after:-bottom-px **:data-[state=active]:after:h-0.5 **:data-[state=active]:after:w-full **:data-[state=active]:after:bg-primary **:data-[state=active]:after:transition-transform **:data-[state=active]:after:scale-x-100 **:data-[state=inactive]:after:scale-x-0"
+            >
+                <TabsTrigger
+                    value="patientinfo"
+                    class="px-2 rounded-none gap-0"
+                >
+                    Patient Info</TabsTrigger
+                >
+                <TabsTrigger
+                    value="clinicalnotes"
+                    class="px-2 rounded-none gap-0"
+                    >Clinical Notes</TabsTrigger
+                >
+                <TabsTrigger value="vitalsigns" class="px-2 rounded-none gap-0"
+                    >Vital Signs</TabsTrigger
+                >
+                <TabsTrigger value="plan" class="px-2 rounded-none gap-0"
+                    >Plan</TabsTrigger
+                >
+                <TabsTrigger value="diet" class="px-2 rounded-none gap-0"
+                    >Diet</TabsTrigger
+                >
+                <TabsTrigger value="diagnois" class="px-2 rounded-none gap-0"
+                    >Diagnosis</TabsTrigger
+                >
+                <TabsTrigger value="abstract" class="px-2 rounded-none gap-0"
+                    >Abstract</TabsTrigger
+                >
+                <TabsTrigger value="documents" class="px-2 rounded-none gap-0"
+                    >Documents
+                </TabsTrigger>
+            </TabsList>
+        </Tabs>
     </div>
 </template>
-
-<script setup>
-import Separator from "@/components/ui/separator/Separator.vue";
-import { defineProps, defineEmits } from "vue";
-
-defineProps({
-    modelValue: { type: String, required: true },
-    tabs: { type: Array, required: true }, // Pass tabs from parent
-});
-
-const emit = defineEmits(["update:modelValue"]);
-</script>

@@ -9,7 +9,8 @@
 @source '../**/*.js';
 
 @theme {
-    --font-sans: "Instrument Sans", ui-sans-serif, system-ui, sans-serif,
+    --font-sans:
+        "Instrument Sans", ui-sans-serif, system-ui, sans-serif,
         "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
         "Noto Color Emoji";
 }
@@ -54,7 +55,7 @@
 
 :root {
     --radius: 0.625rem;
-    --background: oklch(0.9436 0.027 307.05);
+    --background: oklch(0.9714 0.0094 279.69);
     --foreground: oklch(0.347 0.1637 311.91);
     --card: oklch(1 0 0);
     --card-foreground: oklch(0.145 0 0);

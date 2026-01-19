@@ -4,6 +4,7 @@ import Badge from "@/components/ui/badge/Badge.vue";
 import Button from "@/components/ui/button/Button.vue";
 import Card from "@/components/ui/card/Card.vue";
 import Separator from "@/components/ui/separator/Separator.vue";
+import PatientTabs from "../components/PatientTabs.vue";
 import {
     BedSingle,
     Copy,
@@ -16,7 +17,7 @@ import {
 </script>
 
 <template>
-    <Card class="rounded-none border-x-0 bg-primary-foreground shadow-none">
+    <Card class="rounded-none border-x-0 bg-transparent shadow-none">
         <div class="flex justify-between">
             <!--Left-->
             <div class="flex gap-4">
@@ -84,4 +85,5 @@ import {
             </div>
         </div>
     </Card>
+    <PatientTabs />
 </template>
