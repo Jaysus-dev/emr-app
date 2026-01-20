@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
+use App\Http\Controllers\PatientChartController;
 
 // Redirect root URL to /login (optional)
 Route::get('/', fn () => redirect('/login'));
@@ -22,7 +23,7 @@ Route::get('/dashboard', fn () => Inertia::render('Dashboard'))->name('dashboard
 
 Route::get('/settings', function () {
     return redirect()->route('settings.profile');
-});
+}); 
 //Route::get('/settings', fn () => Inertia::render('layouts/SettingsLayout'))->name('settings');
 //Settings content
 Route::prefix('settings')->name('settings.')->group(function() {
@@ -30,8 +31,19 @@ Route::prefix('settings')->name('settings.')->group(function() {
     Route::get('appeareance',fn () => Inertia::render('settings/Appearance'))->name('appearance');
     Route::get('newsupload',fn () => Inertia::render('settings/NewsUpload'))->name('newsupload');
 });
-    Route::get('/patient', fn () => Inertia::render('Patient'))->name('patient');
-
+Route::prefix('patientchart')->name('patientchart.')->group(function () {
+      // Redirect index → /info
+    Route::get('/', fn () => redirect()->route('patientchart.info'))->name('index');
+    //Route::get('/', [PatientChartController::class, 'info'])->name('index');
+    Route::get('info', [PatientChartController::class, 'info'])->name('info');
+    Route::get('clinical-notes', [PatientChartController::class, 'clinicalNotes'])->name('clinical-notes');
+    Route::get('vital-signs', [PatientChartController::class, 'vitalSigns'])->name('vital-signs');
+    Route::get('plan', [PatientChartController::class, 'plan'])->name('plan');
+    Route::get('diet', [PatientChartController::class, 'diet'])->name('diet');
+    Route::get('diagnosis', [PatientChartController::class, 'diagnosis'])->name('diagnosis');
+    Route::get('abstract', [PatientChartController::class, 'abstract'])->name('abstract');
+    Route::get('documents', [PatientChartController::class, 'documents'])->name('documents');
+});
 // Logout 
 Route::post('/logout', function () {
     Auth::logout(); // logs out the user

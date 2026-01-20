@@ -4,7 +4,7 @@ import Badge from "@/components/ui/badge/Badge.vue";
 import Button from "@/components/ui/button/Button.vue";
 import Card from "@/components/ui/card/Card.vue";
 import Separator from "@/components/ui/separator/Separator.vue";
-import PatientTabs from "../components/PatientTabs.vue";
+
 import {
     BedSingle,
     Copy,
@@ -26,7 +26,6 @@ import {
                 <!--image here-->
                 <div class="flex flex-col justify-between">
                     <div class="inline-flex">
-                        <Badge>First Admission</Badge>
                         <Badge>First Admission</Badge>
                     </div>
                     <h3
@@ -85,5 +84,4 @@ import {
             </div>
         </div>
     </Card>
-    <PatientTabs />
 </template>

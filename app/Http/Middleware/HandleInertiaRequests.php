@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Middleware;
-
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 
@@ -32,12 +31,20 @@ class HandleInertiaRequests extends Middleware
      * @see https://inertiajs.com/shared-data
      *
      * @return array<string, mixed>
-     */
-    public function share(Request $request): array
-    {
-        return [
-            ...parent::share($request),
-            //
-        ];
-    }
+        */public function share(Request $request): array
+{
+    return [
+        ...parent::share($request),
+            'ziggy' => function () use ($request) {
+                return [
+                    'routes' => config('ziggy') ?? [],  // safely include Ziggy routes
+                    'route' => [
+                        'name' => $request->route()?->getName(),
+                    ],
+                ];
+            },
+
+    ];
+}
+
 }

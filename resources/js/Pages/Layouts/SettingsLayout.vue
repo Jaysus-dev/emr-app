@@ -31,11 +31,6 @@ function isActive(routeName: string) {
                         :key="item.route"
                         @click="goTo(item.route)"
                         class="w-full text-left px-3 py-2 rounded-md text-sm transition cursor-pointer"
-                        :class="
-                            isActive(item.route)
-                                ? 'bg-primary text-white'
-                                : 'hover:bg-muted'
-                        "
                     >
                         {{ item.label }}
                     </button>
