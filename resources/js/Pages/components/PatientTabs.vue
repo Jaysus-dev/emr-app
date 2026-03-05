@@ -94,13 +94,15 @@ const routeToTabMap: Record<string, string> = {
    Active Tab (Derived from Laravel Route)
 --------------------------------------------------- */
 const page = usePage();
+const props = page.props as { ziggy?: { route?: { name?: string } } };
 
 const activeTab = computed(() => {
-    const currentRoute = page.props.ziggy?.route?.name;
-    console.log(page.props.ziggy.route.name);
-    return routeToTabMap[currentRoute] ?? "patientinfo";
+    const currentRoute = props.ziggy?.route?.name;
+    return currentRoute
+        ? (routeToTabMap[currentRoute] ?? "patientinfo")
+        : "patientinfo";
 });
-
+/* console.log(page.props.ziggy.route.name);*/
 /* ---------------------------------------------------
    Navigation
 --------------------------------------------------- */

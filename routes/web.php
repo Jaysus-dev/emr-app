@@ -3,19 +3,26 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
+use App\Http\Controllers\Auth\LoginController; 
 use App\Http\Controllers\PatientChartController;
 
 // Redirect root URL to /login (optional)
-Route::get('/', fn () => redirect('/login'));
+//Route::get('/', fn () => redirect('/login'));
+
+
+
+Route::get('/login', function () {
+    return Inertia::render('auth/Login');  
+})->name('login');
+Route::post('/login', [LoginController::class, 'login'])->name('login.submit');
 
 // Login page URL
-Route::get('/login', fn () => Inertia::render('auth/Login'))->name('login');
-
+//Route::get('/login', fn () => Inertia::render('auth/Login'))->name('login');
 // FAKE login submit (no auth yet)
-Route::post('/login', function () {
-    // Pretend login is successful
-    return redirect()->route('dashboard');
-})->name('login.submit');
+//Route::post('/login', function () {
+// Pretend login is successful
+//  return redirect()->route('dashboard');
+//})->name('login.submit');
 
 // Dashboard page
 Route::get('/dashboard', fn () => Inertia::render('Dashboard'))->name('dashboard');
@@ -44,7 +51,7 @@ Route::prefix('patientchart')->name('patientchart.')->group(function () {
     Route::get('abstract', [PatientChartController::class, 'abstract'])->name('abstract');
     Route::get('documents', [PatientChartController::class, 'documents'])->name('documents');
 });
-// Logout 
+// Fake Logout 
 Route::post('/logout', function () {
     Auth::logout(); // logs out the user
     return redirect()->route('login'); // redirect to login page

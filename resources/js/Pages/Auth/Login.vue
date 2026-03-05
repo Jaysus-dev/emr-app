@@ -16,7 +16,7 @@ import { useForm } from "@inertiajs/vue3";
 import { route } from "ziggy-js";
 
 const form = useForm({
-    email: "",
+    username: "",
     password: "",
 });
 </script>
@@ -65,11 +65,11 @@ export default {
                     >
                         <div class="grid w-full items-center gap-2">
                             <div class="flex flex-col space-y-1.5">
-                                <Label for="email">Username</Label>
+                                <Label for="username">Username</Label>
                                 <Input
-                                    id="email"
-                                    type="email"
-                                    v-model="form.email"
+                                    id="username"
+                                    type="username"
+                                    v-model="form.username"
                                     placeholder="Input Username"
                                 />
                             </div>
@@ -78,13 +78,15 @@ export default {
                                     <Label for="password">Password</Label>
                                 </div>
                                 <Input
-                                    id="password"
+                                    id="pavilion"
                                     type="password"
                                     v-model="form.password"
                                     placeholder="Input Password"
                                 />
                             </div>
+
                             <div class="flex flex-col space-y-1.5">
+                                <!-- temporary removed for tech exam
                                 <div class="flex items-center">
                                     <Label for="password">Pavilion</Label>
                                 </div>
@@ -93,7 +95,7 @@ export default {
                                     type=""
                                     v-model="form.password"
                                     placeholder="Choose Pavilion"
-                                />
+                                />-->
                             </div>
                         </div>
                         <Button
