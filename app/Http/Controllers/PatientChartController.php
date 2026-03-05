@@ -1,47 +1,67 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\PatientList; // ← Use your PatientList model
 use Inertia\Inertia;
 use Illuminate\Http\Request;
+
 class PatientChartController extends Controller
 {
-    public function info()
+    public function info(PatientList $patient)
     {
-        return Inertia::render('patient/Info');
+        // $patient now comes automatically from the route {patient}
+        return Inertia::render('patient/Info', [
+            'patient' => $patient,
+        ]);
     }
 
-    public function clinicalNotes()
+    public function clinicalNotes(PatientList $patient)
     {
-        return Inertia::render('patient/ClinicalNotes');
+        return Inertia::render('patient/ClinicalNotes', [
+            'patient' => $patient,
+        ]);
     }
 
-    public function vitalSigns()
+    public function vitalSigns(PatientList $patient)
     {
-        return Inertia::render('patient/VitalSigns');
+        return Inertia::render('patient/VitalSigns', [
+            'patient' => $patient,
+        ]);
     }
 
-    public function plan()
+    public function plan(PatientList $patient)
     {
-        return Inertia::render('patient/Plan');
+        return Inertia::render('patient/Plan', [
+            'patient' => $patient,
+        ]);
     }
 
-    public function diet()
+    public function diet(PatientList $patient)
     {
-        return Inertia::render('patient/Diet');
+        return Inertia::render('patient/Diet', [
+            'patient' => $patient,
+        ]);
     }
 
-    public function diagnosis()
+    public function diagnosis(PatientList $patient)
     {
-        return Inertia::render('patient/Diagnosis');
+        return Inertia::render('patient/Diagnosis', [
+            'patient' => $patient,
+        ]);
     }
 
-    public function abstract()
+    public function abstract(PatientList $patient)
     {
-        return Inertia::render('patient/Abstract');
+        return Inertia::render('patient/Abstract', [
+            'patient' => $patient,
+        ]);
     }
 
-    public function documents()
+    public function documents(PatientList $patient)
     {
-        return Inertia::render('patient/Documents');
+        return Inertia::render('patient/Documents', [
+            'patient' => $patient,
+        ]);
     }
 }

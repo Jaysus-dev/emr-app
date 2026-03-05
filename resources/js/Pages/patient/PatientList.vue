@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { router } from "@inertiajs/vue3";
 import { PatientList } from "../../types/patientlist";
 import {
     Table,
@@ -9,10 +10,15 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table"; // ShadCN Vue Table components
+import { route } from "ziggy-js";
 
 defineProps<{
     patients: PatientList[];
 }>();
+
+function goToPatientChart(patientId: number) {
+    router.visit(route("patientchart.info", patientId));
+}
 </script>
 
 <template>
@@ -38,6 +44,7 @@ defineProps<{
                     v-for="patient in patients"
                     :key="patient.id"
                     class="hover:bg-gray-50 cursor-pointer"
+                    @click="goToPatientChart(patient.id)"
                 >
                     <TableCell>
                         <img

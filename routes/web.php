@@ -8,6 +8,7 @@ use App\Http\Controllers\PatientListController;
 use App\Http\Controllers\PatientChartController;
 
 
+
 // Redirect root URL to /login (optional)
 //Route::get('/', fn () => redirect('/login'));
 
@@ -54,17 +55,33 @@ Route::prefix('settings')->name('settings.')->group(function() {
     Route::get('appeareance',fn () => Inertia::render('settings/Appearance'))->name('appearance');
     Route::get('newsupload',fn () => Inertia::render('settings/NewsUpload'))->name('newsupload');
 });
+
 Route::prefix('patientchart')->name('patientchart.')->group(function () {
-      // Redirect index → /info
+    // Redirect index → /info
     Route::get('/', fn () => redirect()->route('patientchart.info'))->name('index');
-    //Route::get('/', [PatientChartController::class, 'info'])->name('index');
-    Route::get('info', [PatientChartController::class, 'info'])->name('info');
-    Route::get('clinical-notes', [PatientChartController::class, 'clinicalNotes'])->name('clinical-notes');
-    Route::get('vital-signs', [PatientChartController::class, 'vitalSigns'])->name('vital-signs');
-    Route::get('plan', [PatientChartController::class, 'plan'])->name('plan');
-    Route::get('diet', [PatientChartController::class, 'diet'])->name('diet');
-    Route::get('diagnosis', [PatientChartController::class, 'diagnosis'])->name('diagnosis');
-    Route::get('abstract', [PatientChartController::class, 'abstract'])->name('abstract');
-    Route::get('documents', [PatientChartController::class, 'documents'])->name('documents');
+
+    // Add patient parameter for info page
+    Route::get('info/{patient}', [PatientChartController::class, 'info'])->name('info');
+    Route::get('clinical-notes/{patient}', [PatientChartController::class, 'clinicalNotes'])->name('clinical-notes');
+    Route::get('vital-signs/{patient}', [PatientChartController::class, 'vitalSigns'])->name('vital-signs');
+    Route::get('plan/{patient}', [PatientChartController::class, 'plan'])->name('plan');
+    Route::get('diet/{patient}', [PatientChartController::class, 'diet'])->name('diet');
+    Route::get('diagnosis/{patient}', [PatientChartController::class, 'diagnosis'])->name('diagnosis');
+    Route::get('abstract/{patient}', [PatientChartController::class, 'abstract'])->name('abstract');
+    Route::get('documents/{patient}', [PatientChartController::class, 'documents'])->name('documents');
 });
+
+//Route::prefix('patientchart')->name('patientchart.')->group(function () {
+      // Redirect index → /info
+//    Route::get('/', fn () => redirect()->route('patientchart.info'))->name('index');
+//    //Route::get('/', [PatientChartController::class, 'info'])->name('index');
+//    Route::get('info', [PatientChartController::class, 'info'])->name('info');
+//    Route::get('clinical-notes', [PatientChartController::class, 'clinicalNotes'])->name('clinical-notes');
+//    Route::get('vital-signs', [PatientChartController::class, 'vitalSigns'])->name('vital-signs');
+//    Route::get('plan', [PatientChartController::class, 'plan'])->name('plan');
+//    Route::get('diet', [PatientChartController::class, 'diet'])->name('diet');
+//    Route::get('diagnosis', [PatientChartController::class, 'diagnosis'])->name('diagnosis');
+//    Route::get('abstract', [PatientChartController::class, 'abstract'])->name('abstract');
+//    Route::get('documents', [PatientChartController::class, 'documents'])->name('documents');
+//});
 
