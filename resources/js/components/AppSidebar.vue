@@ -30,6 +30,7 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import { route } from "ziggy-js";
 
 const props = withDefaults(defineProps<SidebarProps>(), {
     collapsible: "icon",
@@ -38,6 +39,10 @@ const props = withDefaults(defineProps<SidebarProps>(), {
 
 function goToDashboard() {
     router.visit("/dashboard");
+}
+
+function goTPatientList() {
+    router.visit("/patientlist");
 }
 
 const data = {
@@ -56,6 +61,7 @@ const data = {
                 {
                     title: "Patient List",
                     url: "#",
+                    onClick: () => router.visit(route("patients.index")),
                 },
                 {
                     title: "All Patients",
