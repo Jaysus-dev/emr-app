@@ -3,21 +3,21 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
-use App\Http\Controllers\Auth\LoginController; 
+use App\Http\Controllers\Auth\AuthController; 
 use App\Http\Controllers\PatientListController;
 use App\Http\Controllers\PatientChartController;
 
 
 
 // Redirect root URL to /login (optional)
-//Route::get('/', fn () => redirect('/login'));
+Route::get('/', fn () => redirect('/login'));
 
 
 
 Route::get('/login', function () {
     return Inertia::render('auth/Login');  
 })->name('login');
-Route::post('/login', [LoginController::class, 'login'])->name('login.submit');
+Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
 
 Route::post('/logout', function () {
     Auth::logout(); 
