@@ -10,7 +10,6 @@ class PatientChartController extends Controller
 {
     public function info(PatientList $patient)
     {
-        // $patient now comes automatically from the route {patient}
         return Inertia::render('patient/Info', [
             'patient' => $patient,
         ]);

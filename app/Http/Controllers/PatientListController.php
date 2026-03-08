@@ -17,6 +17,7 @@ class PatientListController extends Controller
         ]);
     }
 
+    // Admit new patient
     public function store(Request $request)
     {
         $data = $request->validate([
@@ -33,9 +34,39 @@ class PatientListController extends Controller
         }
 
         $data['status'] = 'Admitted';
+        $patient = PatientList::create($data);
+        
+    }
 
-        PatientList::create($data);
+    // Update patient (partial updates allowed)
+    public function update(Request $request, PatientList $patient)
+    {
+        $data = $request->validate([
+            'first_name' => 'sometimes|string',
+            'last_name' => 'sometimes|string',
+            'gender' => 'sometimes|in:M,F',
+            'dob' => 'sometimes|date',
+            'dx' => 'sometimes|string',
+            'photo' => 'nullable|image|max:2048',
+        ]);
 
-        return redirect()->route('patients.index');
+        if ($request->hasFile('photo')) {
+            if ($patient->photo) {
+                Storage::disk('public')->delete($patient->photo);
+            }
+            $data['photo'] = $request->file('photo')->store('patients', 'public');
+        }
+
+        $patient->update($data);
+       
+        // Update
+
+    }
+
+    // Discharge patient
+    public function discharge(PatientList $patient)
+    {
+        $patient->delete();
+        
     }
 }

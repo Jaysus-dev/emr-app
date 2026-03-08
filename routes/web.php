@@ -25,11 +25,9 @@ Route::middleware(['auth'])->group(function () {
 
     // Patient list
     Route::get('/patientlist', [PatientListController::class, 'index'])->name('patients.index');
-
-    // Admit patient (POST)
     Route::post('/patients', [PatientListController::class, 'store'])->name('patients.store');
-    Route::get('/patients/{patient}/edit', [PatientListController::class, 'edit'])->name('patients.edit');
-
+    Route::put('/patients/{patient}', [PatientListController::class, 'update'])->name('patients.update');
+    Route::delete('/patients/{patient}/discharge', [PatientListController::class, 'discharge']) -> name('patient.discharge');
     // Patient chart routes
     Route::prefix('patientchart')->name('patientchart.')->group(function () {
         Route::get('/', fn () => redirect()->route('patientchart.info'))->name('index');

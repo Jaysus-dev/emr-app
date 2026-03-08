@@ -13,22 +13,16 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table";
-
 import Button from "@/components/ui/button/Button.vue";
 import Admit from "./Admit.vue";
 
 // Props from backend
 const props = defineProps<{ patients: PatientList[] }>();
-const patients = ref(props.patients);
+const patients = ref<PatientList[]>([...props.patients]);
 
 // Modal states
 const showAdmitModal = ref(false);
 const selectedPatient = ref<PatientList | null>(null);
-
-// Reload patient table
-function refreshPatients() {
-    router.reload();
-}
 
 // Open Admit modal
 function openAdmit() {
@@ -38,28 +32,52 @@ function openAdmit() {
 
 // Open Edit modal
 function editPatient(patient: PatientList) {
-    selectedPatient.value = patient;
+    selectedPatient.value = { ...patient }; // clone to avoid reactive issues
     showAdmitModal.value = true;
 }
 
-// Open patient chart
-function goToPatientChart(patientId: number) {
-    router.visit(route("patientchart.info", patientId));
+// Discharge patient
+async function dischargePatient(patient: PatientList) {
+    if (!confirm(`Are you sure you want to discharge ${patient.first_name}?`))
+        return;
+
+    try {
+        await router.delete(route("patient.discharge", patient.id), {
+            preserveScroll: true,
+        });
+        patients.value = patients.value.filter((p) => p.id !== patient.id);
+    } catch (error) {
+        console.error("Failed to discharge patient:", error);
+        alert("Failed to discharge patient. Please try again.");
+    }
+}
+
+// Handle saved patient from modal (add or update)
+function handleSaved(savedPatient: any) {
+    const index = patients.value.findIndex((p) => p.id === savedPatient.id);
+
+    if (index !== -1) {
+        // Update existing patient in the table
+        patients.value[index] = { ...patients.value[index], ...savedPatient };
+    } else {
+        // Add new patient to the table
+        patients.value.push(savedPatient);
+    }
+
+    // Close modal
+    showAdmitModal.value = false;
 }
 </script>
 
 <template>
     <div class="p-6 bg-white rounded shadow">
-        <div class="flex justify-between items-center">
-            <h2 class="text-2xl font-bold mb-4">Patient List</h2>
-
-            <Button class="cursor-pointer" @click="openAdmit">
-                Admit Patient
-            </Button>
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="text-2xl font-bold">Patient List</h2>
+            <Button @click="openAdmit">Admit Patient</Button>
         </div>
 
         <Table>
-            <TableCaption> List of Patients </TableCaption>
+            <TableCaption>List of Patients</TableCaption>
 
             <TableHeader>
                 <TableRow>
@@ -71,7 +89,7 @@ function goToPatientChart(patientId: number) {
                     <TableHead>DOB</TableHead>
                     <TableHead>Primary Dx</TableHead>
                     <TableHead>Status</TableHead>
-                    <TableHead>Action</TableHead>
+                    <TableHead>Actions</TableHead>
                 </TableRow>
             </TableHeader>
 
@@ -79,45 +97,25 @@ function goToPatientChart(patientId: number) {
                 <TableRow
                     v-for="patient in patients"
                     :key="patient.id"
-                    class="hover:bg-gray-50 cursor-pointer"
-                    @click="goToPatientChart(patient.id)"
+                    class="hover:bg-gray-50"
                 >
-                    <TableCell class="py-4">
+                    <TableCell>
                         <img
                             :src="
                                 patient.photo
                                     ? `/storage/${patient.photo}`
                                     : 'https://via.placeholder.com/50'
                             "
-                            alt="Patient Photo"
+                            alt="Photo"
                             class="w-10 h-10 object-cover rounded-full"
                         />
                     </TableCell>
-
-                    <TableCell>
-                        {{ patient.id }}
-                    </TableCell>
-
-                    <TableCell>
-                        {{ patient.first_name }}
-                    </TableCell>
-
-                    <TableCell>
-                        {{ patient.last_name }}
-                    </TableCell>
-
-                    <TableCell>
-                        {{ patient.gender }}
-                    </TableCell>
-
-                    <TableCell>
-                        {{ patient.dob }}
-                    </TableCell>
-
-                    <TableCell>
-                        {{ patient.dx }}
-                    </TableCell>
-
+                    <TableCell>{{ patient.id }}</TableCell>
+                    <TableCell>{{ patient.first_name }}</TableCell>
+                    <TableCell>{{ patient.last_name }}</TableCell>
+                    <TableCell>{{ patient.gender }}</TableCell>
+                    <TableCell>{{ patient.dob }}</TableCell>
+                    <TableCell>{{ patient.dx }}</TableCell>
                     <TableCell>
                         <span
                             class="px-2 py-1 text-xs rounded bg-green-100 text-green-700 capitalize"
@@ -125,27 +123,33 @@ function goToPatientChart(patientId: number) {
                             {{ patient.status }}
                         </span>
                     </TableCell>
-
                     <TableCell>
-                        <Button
-                            class="cursor-pointer"
-                            variant="destructive"
-                            size="sm"
-                            @click.stop="editPatient(patient)"
-                        >
-                            Edit
-                        </Button>
+                        <div class="flex justify-end gap-2">
+                            <Button
+                                variant="secondary"
+                                size="sm"
+                                @click="editPatient(patient)"
+                            >
+                                Edit
+                            </Button>
+                            <Button
+                                variant="destructive"
+                                size="sm"
+                                @click="dischargePatient(patient)"
+                            >
+                                Discharge
+                            </Button>
+                        </div>
                     </TableCell>
                 </TableRow>
             </TableBody>
         </Table>
 
-        <!-- Admit / Edit Modal -->
-
+        <!-- Admit/Edit Modal -->
         <Admit
             v-model="showAdmitModal"
             :patient="selectedPatient"
-            @saved="refreshPatients"
+            @saved="handleSaved"
         />
     </div>
 </template>
