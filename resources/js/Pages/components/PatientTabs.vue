@@ -15,9 +15,9 @@ import {
     WalletCards,
 } from "lucide-vue-next";
 
-const tabTriggerClass = "rounded-none px-2!";
+const tabTriggerClass = "rounded-none px-2! cursor-pointer";
 const tabListClass =
-    "flex p-0 px-4 rounded-none **:text-muted-foreground **:data-[state=active]:bg-transparent **:data-[state=active]:shadow-none **:data-[state=active]:relative **:data-[state=active]:text-foreground **:data-[state=active]:after:absolute **:data-[state=active]:after:left-0 **:data-[state=active]:after:-bottom-px **:data-[state=active]:after:h-0.5 **:data-[state=active]:after:w-full **:data-[state=active]:after:bg-foreground **:data-[state=active]:after:transition-transform";
+    " flex p-0 px-4 rounded-none **:text-muted-foreground **:data-[state=active]:bg-transparent **:data-[state=active]:shadow-none **:data-[state=active]:relative **:data-[state=active]:text-foreground **:data-[state=active]:after:absolute **:data-[state=active]:after:left-0 **:data-[state=active]:after:-bottom-px **:data-[state=active]:after:h-0.5 **:data-[state=active]:after:w-full **:data-[state=active]:after:bg-foreground **:data-[state=active]:after:transition-transform";
 
 // Tabs Configuration
 const tabs = [
