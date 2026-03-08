@@ -1,5 +1,5 @@
 <script setup>
-import PatientChartLayout from "@/pages//PatientChartLayout.vue";
+import PatientChartLayout from "@/pages/layout/PatientChartLayout.vue";
 </script>
 
 <template>
