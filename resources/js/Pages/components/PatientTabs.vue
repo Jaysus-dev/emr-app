@@ -45,25 +45,6 @@ const tabs = [
         icon: NotebookPen,
         route: "patientchart.plan",
     },
-    { value: "diet", label: "Diet", icon: Apple, route: "patientchart.diet" },
-    {
-        value: "diagnosis",
-        label: "Diagnosis",
-        icon: ClipboardPlus,
-        route: "patientchart.diagnosis",
-    },
-    {
-        value: "abstract",
-        label: "Abstract",
-        icon: WalletCards,
-        route: "patientchart.abstract",
-    },
-    {
-        value: "documents",
-        label: "Documents",
-        icon: FolderHeart,
-        route: "patientchart.documents",
-    },
 ];
 
 const routeToTabMap: Record<string, string> = {
@@ -71,10 +52,6 @@ const routeToTabMap: Record<string, string> = {
     "patientchart.clinical-notes": "clinicalnotes",
     "patientchart.vital-signs": "vitalsigns",
     "patientchart.plan": "plan",
-    "patientchart.diet": "diet",
-    "patientchart.diagnosis": "diagnosis",
-    "patientchart.abstract": "abstract",
-    "patientchart.documents": "documents",
 };
 
 // Get current page props from Inertia
