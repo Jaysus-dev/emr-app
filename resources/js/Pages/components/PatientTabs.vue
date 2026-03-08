@@ -15,16 +15,11 @@ import {
     WalletCards,
 } from "lucide-vue-next";
 
-/* ---------------------------------------------------
-   Styling
---------------------------------------------------- */
 const tabTriggerClass = "rounded-none px-2!";
 const tabListClass =
     "flex p-0 px-4 rounded-none **:text-muted-foreground **:data-[state=active]:bg-transparent **:data-[state=active]:shadow-none **:data-[state=active]:relative **:data-[state=active]:text-foreground **:data-[state=active]:after:absolute **:data-[state=active]:after:left-0 **:data-[state=active]:after:-bottom-px **:data-[state=active]:after:h-0.5 **:data-[state=active]:after:w-full **:data-[state=active]:after:bg-foreground **:data-[state=active]:after:transition-transform";
 
-/* ---------------------------------------------------
-   Tabs Configuration
---------------------------------------------------- */
+// Tabs Configuration
 const tabs = [
     {
         value: "patientinfo",
@@ -50,12 +45,7 @@ const tabs = [
         icon: NotebookPen,
         route: "patientchart.plan",
     },
-    {
-        value: "diet",
-        label: "Diet",
-        icon: Apple,
-        route: "patientchart.diet",
-    },
+    { value: "diet", label: "Diet", icon: Apple, route: "patientchart.diet" },
     {
         value: "diagnosis",
         label: "Diagnosis",
@@ -76,9 +66,6 @@ const tabs = [
     },
 ];
 
-/* ---------------------------------------------------
-   Route → Tab Mapping
---------------------------------------------------- */
 const routeToTabMap: Record<string, string> = {
     "patientchart.info": "patientinfo",
     "patientchart.clinical-notes": "clinicalnotes",
@@ -90,24 +77,27 @@ const routeToTabMap: Record<string, string> = {
     "patientchart.documents": "documents",
 };
 
-/* ---------------------------------------------------
-   Active Tab (Derived from Laravel Route)
---------------------------------------------------- */
+// Get current page props from Inertia
 const page = usePage();
-const props = page.props as { ziggy?: { route?: { name?: string } } };
+const props = page.props as {
+    patient?: { id: number };
+    ziggy?: { route?: { name?: string } };
+};
 
+// Active tab derived from current route
 const activeTab = computed(() => {
     const currentRoute = props.ziggy?.route?.name;
     return currentRoute
         ? (routeToTabMap[currentRoute] ?? "patientinfo")
         : "patientinfo";
 });
-/* console.log(page.props.ziggy.route.name);*/
-/* ---------------------------------------------------
-   Navigation
---------------------------------------------------- */
+
+// Navigation function (updated to pass patient ID!)
 function goTo(routeName: string) {
-    router.visit(route(routeName));
+    if (!props.patient) return; // Prevent errors if patient not loaded
+
+    // Added patient.id to generate correct URL for routes like info/{patient}
+    router.visit(route(routeName, props.patient.id));
 }
 </script>
 

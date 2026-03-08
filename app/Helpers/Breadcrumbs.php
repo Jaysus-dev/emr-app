@@ -4,24 +4,14 @@ use App\Models\PatientList;
 
 return [
 
-/*
-|--------------------------------------------------------------------------
-| Dashboard
-|--------------------------------------------------------------------------
-*/
-
+/*Dashboard*/
 'dashboard' => [
     [
         'name' => 'Dashboard',
     ]
 ],
 
-/*
-|--------------------------------------------------------------------------
-| Patient List
-|--------------------------------------------------------------------------
-*/
-
+/* Patient List*/
 'patients.index' => [
     [
         'name' => 'Dashboard',
@@ -32,12 +22,7 @@ return [
     ]
 ],
 
-/*
-|--------------------------------------------------------------------------
-| Patient Chart - Info
-|--------------------------------------------------------------------------
-*/
-
+/*Patient Chart - Info*/
 'patientchart.info' => function (PatientList $patient) {
 
     return [
@@ -63,12 +48,7 @@ return [
     ];
 },
 
-/*
-|--------------------------------------------------------------------------
-| Clinical Notes
-|--------------------------------------------------------------------------
-*/
-
+/* Clinical Notes*/
 'patientchart.clinical-notes' => function (PatientList $patient) {
 
     return [
@@ -84,7 +64,7 @@ return [
         ],
 
         [
-            'name' => $patient->name,
+            'name' => $patient->full_name,
             'href' => route('patientchart.info', $patient)
         ],
 
@@ -95,11 +75,7 @@ return [
     ];
 },
 
-/*
-|--------------------------------------------------------------------------
-| Vital Signs
-|--------------------------------------------------------------------------
-*/
+/* Vital Signs*/
 
 'patientchart.vital-signs' => function (PatientList $patient) {
 
@@ -116,7 +92,7 @@ return [
         ],
 
         [
-            'name' => $patient->name,
+            'name' => $patient->full_name,
             'href' => route('patientchart.info', $patient)
         ],
 
@@ -127,11 +103,7 @@ return [
     ];
 },
 
-/*
-|--------------------------------------------------------------------------
-| Plan
-|--------------------------------------------------------------------------
-*/
+/*Plan*/
 
 'patientchart.plan' => function (PatientList $patient) {
 
@@ -148,7 +120,7 @@ return [
         ],
 
         [
-            'name' => $patient->name,
+            'name' => $patient->full_name,
             'href' => route('patientchart.info', $patient)
         ],
 
@@ -159,11 +131,7 @@ return [
     ];
 },
 
-/*
-|--------------------------------------------------------------------------
-| Diet
-|--------------------------------------------------------------------------
-*/
+/*Diet*/
 
 'patientchart.diet' => function (PatientList $patient) {
 
@@ -180,7 +148,7 @@ return [
         ],
 
         [
-            'name' => $patient->name,
+            'name' => $patient->full_name,
             'href' => route('patientchart.info', $patient)
         ],
 
@@ -191,11 +159,7 @@ return [
     ];
 },
 
-/*
-|--------------------------------------------------------------------------
-| Diagnosis
-|--------------------------------------------------------------------------
-*/
+/*Diagnosis*/
 
 'patientchart.diagnosis' => function (PatientList $patient) {
 
@@ -212,7 +176,7 @@ return [
         ],
 
         [
-            'name' => $patient->name,
+            'name' => $patient->full_name,
             'href' => route('patientchart.info', $patient)
         ],
 
@@ -223,11 +187,7 @@ return [
     ];
 },
 
-/*
-|--------------------------------------------------------------------------
-| Abstract
-|--------------------------------------------------------------------------
-*/
+/*Abstract*/
 
 'patientchart.abstract' => function (PatientList $patient) {
 
@@ -244,7 +204,7 @@ return [
         ],
 
         [
-            'name' => $patient->name,
+            'name' => $patient->full_name,
             'href' => route('patientchart.info', $patient)
         ],
 
@@ -255,11 +215,7 @@ return [
     ];
 },
 
-/*
-|--------------------------------------------------------------------------
-| Documents
-|--------------------------------------------------------------------------
-*/
+/* Documents*/
 
 'patientchart.documents' => function (PatientList $patient) {
 
@@ -276,7 +232,7 @@ return [
         ],
 
         [
-            'name' => $patient->name,
+            'name' => $patient->full_name,
             'href' => route('patientchart.info', $patient)
         ],
 
