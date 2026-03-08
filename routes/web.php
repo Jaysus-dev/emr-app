@@ -35,7 +35,7 @@ Route::post('/logout', function () {
 //})->name('login.submit');
 
 // Dashboard page
-Route::get('/dashboard', fn () => Inertia::render('Dashboard'))->name('dashboard');
+//Route::get('/dashboard', fn () => Inertia::render('Dashboard'))->name('dashboard');
 
 
 
@@ -59,6 +59,7 @@ Route::prefix('settings')->name('settings.')->group(function() {
 Route::prefix('patientchart')->name('patientchart.')->group(function () {
     // Redirect index → /info
     Route::get('/', fn () => redirect()->route('patientchart.info'))->name('index');
+
 
     // Add patient parameter for info page
     Route::get('info/{patient}', [PatientChartController::class, 'info'])->name('info');

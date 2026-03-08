@@ -37,10 +37,6 @@ const props = withDefaults(defineProps<SidebarProps>(), {
     variant: "inset",
 });
 
-function goToDashboard() {
-    router.visit("/dashboard");
-}
-
 const data = {
     navMain: [
         {
@@ -70,7 +66,7 @@ const data = {
                     <SidebarMenuButton
                         size="lg"
                         as-child
-                        @click="goToDashboard"
+                        @click=""
                         class="cursor-pointer"
                     >
                         <a href="#">

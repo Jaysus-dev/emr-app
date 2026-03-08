@@ -4,33 +4,22 @@ use App\Models\PatientList;
 
 return [
 
-/*Dashboard*/
-'dashboard' => [
-    [
-        'name' => 'Dashboard',
-    ]
-],
 
 /* Patient List*/
 'patients.index' => [
-    [
-        'name' => 'Dashboard',
-        'href' => route('dashboard')
-    ],
+   
     [
         'name' => 'Patients'
     ]
 ],
+
+
 
 /*Patient Chart - Info*/
 'patientchart.info' => function (PatientList $patient) {
 
     return [
 
-        [
-            'name' => 'Dashboard',
-            'href' => route('dashboard')
-        ],
 
         [
             'name' => 'Patients',
@@ -53,10 +42,6 @@ return [
 
     return [
 
-        [
-            'name' => 'Dashboard',
-            'href' => route('dashboard')
-        ],
 
         [
             'name' => 'Patients',
@@ -82,11 +67,6 @@ return [
     return [
 
         [
-            'name' => 'Dashboard',
-            'href' => route('dashboard')
-        ],
-
-        [
             'name' => 'Patients',
             'href' => route('patients.index')
         ],
@@ -109,10 +89,7 @@ return [
 
     return [
 
-        [
-            'name' => 'Dashboard',
-            'href' => route('dashboard')
-        ],
+      
 
         [
             'name' => 'Patients',
@@ -137,10 +114,7 @@ return [
 
     return [
 
-        [
-            'name' => 'Dashboard',
-            'href' => route('dashboard')
-        ],
+      
 
         [
             'name' => 'Patients',
@@ -165,10 +139,7 @@ return [
 
     return [
 
-        [
-            'name' => 'Dashboard',
-            'href' => route('dashboard')
-        ],
+     
 
         [
             'name' => 'Patients',
@@ -193,10 +164,7 @@ return [
 
     return [
 
-        [
-            'name' => 'Dashboard',
-            'href' => route('dashboard')
-        ],
+    
 
         [
             'name' => 'Patients',
@@ -221,11 +189,7 @@ return [
 
     return [
 
-        [
-            'name' => 'Dashboard',
-            'href' => route('dashboard')
-        ],
-
+      
         [
             'name' => 'Patients',
             'href' => route('patients.index')

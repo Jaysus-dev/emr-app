@@ -7,7 +7,7 @@ import { ZiggyVue } from "ziggy-js";
 import AppLayout from "@/pages/layouts/AppLayout.vue";
 import { router, usePage } from "@inertiajs/vue3";
 import { route } from "ziggy-js";
-
+import "vue3-easy-data-table/dist/style.css";
 /**
  * Type for a Vue page component
  */
@@ -26,7 +26,7 @@ createInertiaApp({
         // Resolve the page component from Pages folder
         const page = await resolvePageComponent(
             `./pages/${name}.vue`,
-            import.meta.glob("./pages/**/*.vue")
+            import.meta.glob("./pages/**/*.vue"),
         );
 
         // Unwrap the default export if it exists
