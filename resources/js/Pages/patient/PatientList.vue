@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { router } from "@inertiajs/vue3";
+import { route } from "ziggy-js";
 import { PatientList } from "../../types/patientlist";
 import {
     Table,
@@ -9,14 +10,14 @@ import {
     TableHead,
     TableHeader,
     TableRow,
-} from "@/components/ui/table"; // ShadCN Vue Table components
-import { route } from "ziggy-js";
+} from "@/components/ui/table";
 
 defineProps<{
     patients: PatientList[];
 }>();
 
 function goToPatientChart(patientId: number) {
+    // Pass the patient ID to the route
     router.visit(route("patientchart.info", patientId));
 }
 </script>

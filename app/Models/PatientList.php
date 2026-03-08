@@ -16,4 +16,12 @@ class PatientList extends Model
         'dob',
         'photo',
     ];
+
+    /**
+     * Accessor for full name
+     */
+    public function getFullNameAttribute(): string
+    {
+        return "{$this->first_name} {$this->last_name}";
+    }
 }
