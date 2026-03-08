@@ -3,6 +3,7 @@ import { ref } from "vue";
 import { router } from "@inertiajs/vue3";
 import { route } from "ziggy-js";
 import type { PatientList } from "../../types/patientlist";
+
 import {
     Table,
     TableBody,
@@ -12,22 +13,36 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table";
-import Button from "@/components/ui/button/Button.vue";
-import Admit from "./Admit.vue"; // Import Admit Modal
 
-// Props from server
+import Button from "@/components/ui/button/Button.vue";
+import Admit from "./Admit.vue";
+
+// Props from backend
 const props = defineProps<{ patients: PatientList[] }>();
 const patients = ref(props.patients);
 
-// Modal state
+// Modal states
 const showAdmitModal = ref(false);
+const selectedPatient = ref<PatientList | null>(null);
 
-// Refresh table after admitting a patient
+// Reload patient table
 function refreshPatients() {
-    router.reload(); // reloads current page to get latest patients
+    router.reload();
 }
 
-// Row click to open patient chart
+// Open Admit modal
+function openAdmit() {
+    selectedPatient.value = null;
+    showAdmitModal.value = true;
+}
+
+// Open Edit modal
+function editPatient(patient: PatientList) {
+    selectedPatient.value = patient;
+    showAdmitModal.value = true;
+}
+
+// Open patient chart
 function goToPatientChart(patientId: number) {
     router.visit(route("patientchart.info", patientId));
 }
@@ -37,13 +52,15 @@ function goToPatientChart(patientId: number) {
     <div class="p-6 bg-white rounded shadow">
         <div class="flex justify-between items-center">
             <h2 class="text-2xl font-bold mb-4">Patient List</h2>
-            <Button class="cursor-pointer" @click="showAdmitModal = true"
-                >Admit Patient</Button
-            >
+
+            <Button class="cursor-pointer" @click="openAdmit">
+                Admit Patient
+            </Button>
         </div>
 
         <Table>
-            <TableCaption>List of Patients</TableCaption>
+            <TableCaption> List of Patients </TableCaption>
+
             <TableHeader>
                 <TableRow>
                     <TableHead>Photo</TableHead>
@@ -52,6 +69,8 @@ function goToPatientChart(patientId: number) {
                     <TableHead>Last Name</TableHead>
                     <TableHead>Gender</TableHead>
                     <TableHead>DOB</TableHead>
+                    <TableHead>Primary Dx</TableHead>
+                    <TableHead>Status</TableHead>
                     <TableHead>Action</TableHead>
                 </TableRow>
             </TableHeader>
@@ -63,34 +82,70 @@ function goToPatientChart(patientId: number) {
                     class="hover:bg-gray-50 cursor-pointer"
                     @click="goToPatientChart(patient.id)"
                 >
-                    <TableCell>
+                    <TableCell class="py-4">
                         <img
                             :src="
-                                patient.photo ||
-                                'https://via.placeholder.com/50'
+                                patient.photo
+                                    ? `/storage/${patient.photo}`
+                                    : 'https://via.placeholder.com/50'
                             "
                             alt="Patient Photo"
-                            class="w-12 h-12 object-cover rounded-full"
+                            class="w-10 h-10 object-cover rounded-full"
                         />
                     </TableCell>
-                    <TableCell>{{ patient.id }}</TableCell>
-                    <TableCell>{{ patient.first_name }}</TableCell>
-                    <TableCell>{{ patient.last_name }}</TableCell>
-                    <TableCell>{{ patient.gender }}</TableCell>
-                    <TableCell>{{ patient.dob }}</TableCell>
+
+                    <TableCell>
+                        {{ patient.id }}
+                    </TableCell>
+
+                    <TableCell>
+                        {{ patient.first_name }}
+                    </TableCell>
+
+                    <TableCell>
+                        {{ patient.last_name }}
+                    </TableCell>
+
+                    <TableCell>
+                        {{ patient.gender }}
+                    </TableCell>
+
+                    <TableCell>
+                        {{ patient.dob }}
+                    </TableCell>
+
+                    <TableCell>
+                        {{ patient.dx }}
+                    </TableCell>
+
+                    <TableCell>
+                        <span
+                            class="px-2 py-1 text-xs rounded bg-green-100 text-green-700 capitalize"
+                        >
+                            {{ patient.status }}
+                        </span>
+                    </TableCell>
+
                     <TableCell>
                         <Button
+                            class="cursor-pointer"
+                            variant="destructive"
                             size="sm"
-                            @click.stop="goToPatientChart(patient.id)"
+                            @click.stop="editPatient(patient)"
                         >
-                            View
+                            Edit
                         </Button>
                     </TableCell>
                 </TableRow>
             </TableBody>
         </Table>
 
-        <!-- Admit Modal -->
-        <Admit v-model="showAdmitModal" @saved="refreshPatients" />
+        <!-- Admit / Edit Modal -->
+
+        <Admit
+            v-model="showAdmitModal"
+            :patient="selectedPatient"
+            @saved="refreshPatients"
+        />
     </div>
 </template>

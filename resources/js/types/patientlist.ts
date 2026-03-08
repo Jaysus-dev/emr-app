@@ -5,4 +5,6 @@ export interface PatientList {
     gender: string;
     dob: string;
     photo: string | null;
+    dx: string;
+    status: string;
 }

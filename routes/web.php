@@ -28,6 +28,7 @@ Route::middleware(['auth'])->group(function () {
 
     // Admit patient (POST)
     Route::post('/patients', [PatientListController::class, 'store'])->name('patients.store');
+    Route::get('/patients/{patient}/edit', [PatientListController::class, 'edit'])->name('patients.edit');
 
     // Patient chart routes
     Route::prefix('patientchart')->name('patientchart.')->group(function () {

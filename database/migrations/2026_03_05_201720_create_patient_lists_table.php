@@ -13,11 +13,13 @@ return new class extends Migration
     {
         Schema::create('patient_lists', function (Blueprint $table) {
             $table->id();
-             $table->string('photo')->nullable(); 
+            $table->string('photo')->nullable(); 
             $table->string('first_name');
             $table->string('last_name');
             $table->string('gender')->nullable();
             $table->date('dob')->nullable();
+            $table->string('dx')->nullable();
+            $table->string('status')->default('Admitted');
             $table->timestamps();
         });
     }

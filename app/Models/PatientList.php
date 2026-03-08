@@ -15,6 +15,8 @@ class PatientList extends Model
         'gender',
         'dob',
         'photo',
+        'dx',
+        'status'
     ];
 
     /**
