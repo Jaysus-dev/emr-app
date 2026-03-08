@@ -8,6 +8,8 @@ import AppLayout from "@/pages/layouts/AppLayout.vue";
 import { router, usePage } from "@inertiajs/vue3";
 import { route } from "ziggy-js";
 import "vue3-easy-data-table/dist/style.css";
+import Vue3EasyDataTable from "vue3-easy-data-table";
+
 /**
  * Type for a Vue page component
  */
@@ -45,6 +47,7 @@ createInertiaApp({
     setup({ el, App, props, plugin }) {
         createApp({ render: () => h(App, props) })
             .use(plugin)
+            .use(Vue3EasyDataTable)
             .use(ZiggyVue)
             .mount(el);
     },

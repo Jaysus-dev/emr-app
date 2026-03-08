@@ -1,7 +1,8 @@
 <script setup lang="ts">
+import { ref } from "vue";
 import { router } from "@inertiajs/vue3";
 import { route } from "ziggy-js";
-import { PatientList } from "../../types/patientlist";
+import type { PatientList } from "../../types/patientlist";
 import {
     Table,
     TableBody,
@@ -11,24 +12,38 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table";
+import Button from "@/components/ui/button/Button.vue";
+import Admit from "./Admit.vue"; // Import Admit Modal
 
-defineProps<{
-    patients: PatientList[];
-}>();
+// Props from server
+const props = defineProps<{ patients: PatientList[] }>();
+const patients = ref(props.patients);
 
+// Modal state
+const showAdmitModal = ref(false);
+
+// Refresh table after admitting a patient
+function refreshPatients() {
+    router.reload(); // reloads current page to get latest patients
+}
+
+// Row click to open patient chart
 function goToPatientChart(patientId: number) {
-    // Pass the patient ID to the route
     router.visit(route("patientchart.info", patientId));
 }
 </script>
 
 <template>
     <div class="p-6 bg-white rounded shadow">
-        <h2 class="text-2xl font-bold mb-4">Patient List</h2>
+        <div class="flex justify-between items-center">
+            <h2 class="text-2xl font-bold mb-4">Patient List</h2>
+            <Button class="cursor-pointer" @click="showAdmitModal = true"
+                >Admit Patient</Button
+            >
+        </div>
 
         <Table>
-            <TableCaption>List of admitted patients</TableCaption>
-
+            <TableCaption>List of Patients</TableCaption>
             <TableHeader>
                 <TableRow>
                     <TableHead>Photo</TableHead>
@@ -37,6 +52,7 @@ function goToPatientChart(patientId: number) {
                     <TableHead>Last Name</TableHead>
                     <TableHead>Gender</TableHead>
                     <TableHead>DOB</TableHead>
+                    <TableHead>Action</TableHead>
                 </TableRow>
             </TableHeader>
 
@@ -62,8 +78,19 @@ function goToPatientChart(patientId: number) {
                     <TableCell>{{ patient.last_name }}</TableCell>
                     <TableCell>{{ patient.gender }}</TableCell>
                     <TableCell>{{ patient.dob }}</TableCell>
+                    <TableCell>
+                        <Button
+                            size="sm"
+                            @click.stop="goToPatientChart(patient.id)"
+                        >
+                            View
+                        </Button>
+                    </TableCell>
                 </TableRow>
             </TableBody>
         </Table>
+
+        <!-- Admit Modal -->
+        <Admit v-model="showAdmitModal" @saved="refreshPatients" />
     </div>
 </template>
