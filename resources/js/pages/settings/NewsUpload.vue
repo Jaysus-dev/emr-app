@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import SettingsLayout from "../layouts/SettingsLayout.vue";
+import SettingsLayout from "../layout/SettingsLayout.vue";
 import {
     Select,
     SelectContent,

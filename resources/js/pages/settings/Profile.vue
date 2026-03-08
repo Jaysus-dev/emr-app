@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import SettingsLayout from "../layouts/SettingsLayout.vue";
+import SettingsLayout from "../layout/SettingsLayout.vue";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
