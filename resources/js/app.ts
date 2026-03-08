@@ -4,7 +4,7 @@ import { createInertiaApp } from "@inertiajs/vue3";
 import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
 import { ZiggyVue } from "ziggy-js";
 // Import your global AppLayout
-import AppLayout from "@/pages/layouts/AppLayout.vue";
+import AppLayout from "../js/pages/layouts/AppLayout.vue";
 import { router, usePage } from "@inertiajs/vue3";
 import { route } from "ziggy-js";
 import "vue3-easy-data-table/dist/style.css";
