@@ -41,136 +41,18 @@ function goToDashboard() {
     router.visit("/dashboard");
 }
 
-function goTPatientList() {
-    router.visit("/patientlist");
-}
-
 const data = {
     navMain: [
-        // {
-        //     title: "Dashboard",
-        //    url: "#",
-        //     icon: LayoutDashboard,
-        //  },
         {
             title: "Patients",
             url: "#",
             icon: SquareUserRound,
             isActive: true,
-            items: [
-                {
-                    title: "Patient List",
-                    url: "#",
-                    onClick: () => router.visit(route("patients.index")),
-                },
-                {
-                    title: "All Patients",
-                    url: "#",
-                },
-                {
-                    title: "Express PTs",
-                    url: "#",
-                },
-            ],
-        },
-        {
-            title: "Transfers",
-            url: "#",
-            icon: Move3D,
-            items: [
-                {
-                    title: "For Trans-In",
-                    url: "#",
-                },
-                {
-                    title: "For Trans-Out",
-                    url: "#",
-                },
-            ],
-        },
-        {
-            title: "Finalization",
-            url: "#",
-            icon: CalendarCheck2,
-            items: [
-                {
-                    title: "For Finalization",
-                    url: "#",
-                },
-                {
-                    title: "Finalized PTs",
-                    url: "#",
-                },
-            ],
-        },
-        {
-            title: "Referral List ",
-            url: "#",
-            icon: FileSliders,
-            items: [
-                {
-                    title: "Incoming",
-                    url: "#",
-                },
-                {
-                    title: "Outgoing",
-                    url: "#",
-                },
-            ],
-        },
-        {
-            title: "Clinical Overview ",
-            url: "#",
-            icon: BookOpen,
-            items: [
-                {
-                    title: "Reassessment Calendar",
-                    url: "#",
-                },
-                {
-                    title: "Diet Summary",
-                    url: "#",
-                },
-                {
-                    title: "Census",
-                    url: "#",
-                },
-            ],
+            onClick: () => router.visit(route("patients.index")),
         },
     ],
-    // projects: [
-    //    {
-    //      name: "Reassessment Calendar",
-    //     url: "#",
-    //     icon: Frame,
-    // },
-    //  {
-    //     name: "Sales & Marketing",
-    //      url: "#",
-    //     icon: PieChart,
-    //   },
-    //   {
-    //       name: "Travel",
-    //       url: "#",
-    //       icon: Map,
-    //   },
-    // ],
+
     navSecondary: [
-        {
-            title: "Ward Settings",
-            url: "#",
-            icon: Settings2,
-        },
-        {
-            title: "Data Quality Check",
-            url: "#",
-            icon: PackageCheck,
-        },
-        {
-            title: "Learning Center",
-            url: "#",
-            icon: BookAlert,
-        },
         {
             title: "Release Notes",
             url: "#",
